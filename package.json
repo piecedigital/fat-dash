@@ -1,0 +1,23 @@
+{
+  "name": "fat-dash",
+  "version": "1.0.0",
+  "description": "Track your own progess in FPS Aim Trainer. Analyze your challenges, scenarios and time periods by importing csv files which are created by the game for each challenge.",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piecedigital/fat-dash.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piecedigital/fat-dash/issues"
+  },
+  "homepage": "https://github.com/piecedigital/fat-dash#readme",
+  "devDependencies": {
+    "electron": "^9.1.0"
+  }
+}
