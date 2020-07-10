@@ -43,12 +43,21 @@ regedit.arch.list32(regkey, function(err, result) {
     for (let index = 0; index < appDirs.length; index++) {
         const appDir = appDirs[index];
 
-        statsDir = appDir + "/steamapps/common/FPSAimTrainer/FPSAimTrainer/stats";
+        var dir = appDir + "/steamapps/common/FPSAimTrainer/FPSAimTrainer/stats";
 
-        if (fs.existsSync(statsDir)) {
+        log.logOut("Checking for app: " + dir, true);
+
+        if (fs.existsSync(dir)) {
             log.logOut("Found app directory", true);
+            statsDir = dir;
             break;
         }
+    }
+
+    if (!statsDir) {
+        log.logOut("Could not find app directory", true, {
+            type: "error"
+        });
     }
 });
 
@@ -131,7 +140,7 @@ function createWindow () {
             clearInterval(interval);
             startFeedingData();
         }
-    }, 1000);
+    }, 5 * 1000);
 }
 
 app.on("ready", createWindow, 2000);
