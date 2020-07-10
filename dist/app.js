@@ -1,8 +1,9 @@
 var electron = require("electron");
 var regedit = require("regedit");
 var vdf = require("node-vdf");
-var log = require("./log-out");
+var path = require("path");
 var fs = require("fs");
+var log = require("./log-out");
 
 var app = electron.app;
 var BrowserWindow = electron.BrowserWindow;
@@ -33,7 +34,7 @@ regedit.arch.list32(regkey, function(err, result) {
 
     var vdfParsed = vdf.parse(vdfFile);
     var appDirs = [
-        "C:/Program Files (x86)/Steam/"
+        "C:/Program Files (x86)/Steam"
     ];
 
     Object.keys(vdfParsed.LibraryFolders).map(function(key) {
