@@ -1,6 +1,7 @@
 var electron = require("electron");
 var regedit = require("regedit");
 var vdf = require("node-vdf");
+var log = require("./log-out");
 var fs = require("fs");
 
 var app = electron.app;
@@ -12,16 +13,22 @@ var statsDir = "";
 var regkey = "HKLM\\SOFTWARE\\Wow6432Node\\Valve\\Steam";
 regedit.arch.list32(regkey, function(err, result) {
     if (err) {
-        return console.error(err);
+        return log.logOut(err, true, {
+            type: "error"
+        });
     }
 
     var steamDir = result[regkey].values.InstallPath.value;
+    log.logOut("Found steam dir: " + steamDir, true);
     var gameId = "824270";
     var vdfFile;
     try {
         vdfFile = fs.readFileSync(steamDir + "/steamapps/libraryfolders.vdf", { encoding: "utf-8" });
+        log.logOut("Found vdf file", true);
     } catch(e) {
-        throw e;
+        return log.logOut(e, true, {
+            type: "error"
+        });
     }
 
     var vdfParsed = vdf.parse(vdfFile);
@@ -40,10 +47,15 @@ regedit.arch.list32(regkey, function(err, result) {
 
         try {
             acfFile = fs.readFileSync(appDir + "/steamapps/appmanifest_" + gameId + ".acf", { encoding: "utf-8" });
-        } catch(e) {}
+        } catch(e) {
+            log.logOut(e, true, {
+                type: "error"
+            });
+        }
 
         if (acfFile) {
             commonAppDir = appDir;
+            log.logOut("Found app directory: " + commonAppDir, true);
             break;
         }
     }
@@ -53,6 +65,10 @@ regedit.arch.list32(regkey, function(err, result) {
         acfParsed = vdf.parse(acfFile);
         var appFolder = acfParsed.AppState.installdir;
         statsDir = commonAppDir + "/steamapps/common/" + appFolder + "/FPSAimTrainer/stats";
+    } else {
+        log.logOut("No acf file", true, {
+            type: "error"
+        });
     }
 });
 
@@ -81,10 +97,10 @@ function createWindow () {
             webSecurity: false
         }
     });
+    win.setMenu(null);
 
     // and load the index.html of the app.
     win.loadURL(PROTOCOL + ":///" + "index.html");
-    win.webContents.openDevTools();
 
     // get stats
     var newestFiles = [];
