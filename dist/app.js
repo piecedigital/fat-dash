@@ -32,7 +32,9 @@ regedit.arch.list32(regkey, function(err, result) {
     }
 
     var vdfParsed = vdf.parse(vdfFile);
-    var appDirs = [];
+    var appDirs = [
+        "C:/Program Files (x86)/Steam/"
+    ];
 
     Object.keys(vdfParsed.LibraryFolders).map(function(key) {
         if (key.match(/^\d+/)) {
