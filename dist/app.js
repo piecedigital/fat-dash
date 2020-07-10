@@ -40,35 +40,15 @@ regedit.arch.list32(regkey, function(err, result) {
         }
     });
 
-    var acfFile;
-    var commonAppDir;
     for (let index = 0; index < appDirs.length; index++) {
         const appDir = appDirs[index];
 
-        try {
-            acfFile = fs.readFileSync(appDir + "/steamapps/appmanifest_" + gameId + ".acf", { encoding: "utf-8" });
-        } catch(e) {
-            log.logOut(e, true, {
-                type: "error"
-            });
-        }
+        statsDir = appDir + "/steamapps/common/FPSAimTrainer/FPSAimTrainer/stats";
 
-        if (acfFile) {
-            commonAppDir = appDir;
-            log.logOut("Found app directory: " + commonAppDir, true);
+        if (fs.existsSync(statsDir)) {
+            log.logOut("Found app directory", true);
             break;
         }
-    }
-
-    var acfParsed;
-    if (acfFile) {
-        acfParsed = vdf.parse(acfFile);
-        var appFolder = acfParsed.AppState.installdir;
-        statsDir = commonAppDir + "/steamapps/common/" + appFolder + "/FPSAimTrainer/stats";
-    } else {
-        log.logOut("No acf file", true, {
-            type: "error"
-        });
     }
 });
 

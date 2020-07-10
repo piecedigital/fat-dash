@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build": "electron-packager ./ fat-dash-desktop --platform=win32 --arch=x64 --overwrite"
+    "build": "electron-packager ./ fat-dash-desktop --platform=win32 --arch=x64 --overwrite --ignore=\"(\\.gitignore|logs|fat-dash-desktop.+)\""
   },
   "repository": {
     "type": "git",
