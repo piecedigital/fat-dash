@@ -28,7 +28,10 @@ ipcRenderer.on("new-stats", function(event, stats) {
     loadStats(makeDataTransfer(stats));
 });
 
-setInterval(ipcRenderer.send.bind(null, "get-new-stats"), 5 * 1000);
+setInterval(function() {
+    console.log("retrieving newest stats");
+    ipcRenderer.send("get-new-stats");
+}, 5 * 1000);
 ipcRenderer.send("get-new-stats");
 
 function loadStats(dt) {
