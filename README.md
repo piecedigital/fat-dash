@@ -43,15 +43,15 @@ E.g. you could take all scenarios from the routines in the AIMER7 guide [Link](h
 - ... only limited by your creativity ...
 
 ### Create group
-from Time Line Chart:   
+from Time Line Chart:
 ![create scenario group alt1](https://user-images.githubusercontent.com/45684225/56912399-79fdad80-6aaf-11e9-9122-cd9d53706a9a.png)
 
-Alternatively under settings:  
+Alternatively under settings:
 ![settings](https://user-images.githubusercontent.com/45684225/56912510-af0a0000-6aaf-11e9-94a5-e1ace560b19c.png)
 ![create_group2](https://user-images.githubusercontent.com/45684225/56912528-b6310e00-6aaf-11e9-9dc3-2bf9177f6088.png)
 
 ### Show graph for created group
-Simply select one of the groups in the Time Line chart scenario select.  
+Simply select one of the groups in the Time Line chart scenario select.
 ![image](https://user-images.githubusercontent.com/45684225/56913216-5dfb0b80-6ab1-11e9-8f2a-0839edc052d9.png)
 
 ### Import/Export scenario groups as file
@@ -63,7 +63,7 @@ Under settings you can import or export scenario groups from/to a file to create
 
 ## Upload settings
 
-In the game under Game Options, you can set the Statistics Export mode. Recommended value: 
+In the game under Game Options, you can set the Statistics Export mode. Recommended value:
 ![image](https://user-images.githubusercontent.com/45684225/58378813-956ab400-7f9a-11e9-94b7-cf2c71d08b41.png)
 
 To get rid of aborted challenges, **per default** all challenges with a zero value score are filtered out as its suitable in almost all situations. If you want to change that, there is an upload option:
@@ -99,3 +99,12 @@ Just use an up-to-date browser. Tested with
 ## Disclaimer
 
 This is a community project (not from the official author).
+
+## Build Electron
+
+Tested with Node version 10.15.0
+
+- Install dependencies with `npm install`
+- Install `electron-packager` with `npm install -g electron-packager`
+- Run the app with the npm script `npm start`
+- Build the project for windows with `npm run build`
